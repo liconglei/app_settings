@@ -24,16 +24,16 @@ extension String {
 public class SwiftAppSettingsPlugin: NSObject, FlutterPlugin {
 
   /// Private method to open device settings window
-    private func openSettings( {
-    let openSettingsURLBase64String = "QXBwLVByZWZzOnJvb3Q9V0lGSQ==";
-    if let url = URL(string: openSettingsURLBase64String.decodeBase64() ?? UIApplication.openSettingsURLString) {
-        if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        } else {
-            UIApplication.shared.openURL(url)
+    private func openSettings(){
+        let openSettingsURLBase64String = "QXBwLVByZWZzOnJvb3Q9V0lGSQ==";
+        if let url = URL(string: openSettingsURLBase64String.decodeBase64() ?? UIApplication.openSettingsURLString) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
         }
     }
-  }
 
   /// Public register method for Flutter plugin registrar.
   public static func register(with registrar: FlutterPluginRegistrar) {
